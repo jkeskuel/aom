@@ -18,14 +18,11 @@
 			<div id="wrapper">
 
 				<!-- Header -->
-					<header id="header">
-						<div class="logo">
-							<span class="icon fa-database"></span>
-						</div>
+					<header id="header">				
 						<div class="content">
 							<div class="inner">
-								<h1>Jure Kranjc - DBA</h1>
-								<p>Rešitve za SQL Server okolja – arhitektura, optimizacija, podpora.</p>														
+								<h1>Jure Kranjc - DBA </h1>
+								<p><span class="fas fa-database"></span> Rešitve za SQL Server okolja – arhitektura, optimizacija, podpora.</p>														
 							</div>
 						</div>
 						<nav>
@@ -107,35 +104,60 @@
 										<li>Svetovanje pri razvoju aplikacij</li>
 										<li>Optimizacija podatkovnih tokov</li>
 									</ul>
-								
+								</article>
 						<!-- Contact -->
 							<article id="contact">
 								<h2 class="major">Kontakt</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Naziv</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Sporočilo</label>
-											<textarea name="message" id="message" rows="4"></textarea>
-										</div>
+								<!-- Load EmailJS SDK -->
+			<!-- Load EmailJS SDK -->
+								<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+								<script>
+								(function(){
+									emailjs.init("T491ObZb_kHykk6_M");
+								})();
+								</script>
+
+								<!-- Contact Form -->
+								<form id="contact-form">
+								<div class="fields">
+									<div class="field half">
+									<label for="name">Naziv</label>
+									<input type="text" name="from_name" id="name" required />
 									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
+									<div class="field half">
+									<label for="email">Email</label>
+									<input type="email" name="reply_to" id="email" required />
+									</div>
+									<div class="field">
+									<label for="message">Sporočilo</label>
+									<textarea name="message" id="message" rows="4" required></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Pošlji sporočilo" class="primary" /></li>
+									<li><input type="reset" value="Počisti" /></li>
+								</ul>
 								</form>
+
+								<!-- Form submission script -->
+								<script>
+								document.getElementById("contact-form").addEventListener("submit", function(event) {
+									event.preventDefault();
+
+									emailjs.sendForm("service_XXXXX", "template_jc2723j", this)
+									.then(() => {
+										alert("Sporočilo poslano! Hvala.");
+										this.reset();
+									}, (error) => {
+										console.error("EmailJS napaka:", error);
+										alert("Napaka pri pošiljanju. Poskusi znova.");
+									});
+								});
+								</script>
+
 								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://www.linkedin.com/in/jure-kranjc-8858b021a" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+									<li><a href="https://github.com/jkeskuel/eskuel" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 								</ul>
 							</article>
 
@@ -385,7 +407,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; JureK. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
 			</div>
